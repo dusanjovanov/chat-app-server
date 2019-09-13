@@ -37,10 +37,7 @@ try {
 const app = express();
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 const server = createServer(app);
-const io = socketio(server, {
-  origins: process.env.CLIENT_URL,
-  transports: ["websocket", "polling", "flashsocket"]
-});
+const io = socketio(server);
 
 app.use(bodyParser.json());
 app.use(cookieParser());

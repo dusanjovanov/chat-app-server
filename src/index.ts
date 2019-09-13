@@ -36,9 +36,9 @@ try {
 
 const app = express();
 const server = createServer(app);
-const io = socketio(server, { origins: "http://localhost:1234" });
+const io = socketio(server, { origins: process.env.CLIENT_URL });
 
-app.use(cors({ origin: "http://localhost:1234", credentials: true }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 

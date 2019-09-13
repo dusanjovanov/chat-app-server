@@ -15,6 +15,8 @@ import sendMessage from "./socket/sendMessage";
 
 dotenv.config();
 
+const PORT = process.env.port || 5000;
+
 let dbUrl;
 
 if (process.env.NODE_ENV === "development") {
@@ -71,4 +73,4 @@ io.on("connection", async socket => {
   }
 });
 
-server.listen(5000, () => console.log("Server started on port 5000"));
+server.listen(PORT, () => console.log(`Server started on port ${PORT}`));

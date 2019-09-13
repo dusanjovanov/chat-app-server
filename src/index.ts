@@ -25,6 +25,8 @@ if (process.env.NODE_ENV === "development") {
   dbUrl = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}`;
 }
 
+console.log(dbUrl)
+
 try {
   mongoose.connect(dbUrl, {
     useNewUrlParser: true,

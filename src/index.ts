@@ -15,8 +15,16 @@ import sendMessage from "./socket/sendMessage";
 
 dotenv.config();
 
+let dbUrl;
+
+if (process.env.NODE_ENV === "development") {
+  dbUrl = "mongodb://localhost/chat";
+} else {
+  dbUrl = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}`;
+}
+
 try {
-  mongoose.connect("mongodb://localhost/chat", {
+  mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });

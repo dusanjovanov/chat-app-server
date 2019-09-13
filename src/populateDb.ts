@@ -3,10 +3,22 @@ import faker from "faker";
 import moment from "moment";
 import mongoose from "mongoose";
 import emojis from "./emojis";
-import { contrast, getRandomInt } from "./util";
+import { contrast, getRandomInt, RGB } from "./util";
 import User from "./models/user";
 import Message from "./models/message";
-mongoose.connect("mongodb://localhost/chat", { useNewUrlParser: true });
+import dotenv from "dotenv";
+
+dotenv.config();
+
+let dbUrl;
+
+if (process.env.NODE_ENV === "development") {
+  dbUrl = "mongodb://localhost/chat";
+} else {
+  dbUrl = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}`;
+}
+
+mongoose.connect(dbUrl, { useNewUrlParser: true });
 
 const createUsers = async (nUsers = 10) => {
   const users = Array(nUsers)
@@ -17,7 +29,8 @@ const createUsers = async (nUsers = 10) => {
         getRandomInt(0, 255),
         getRandomInt(0, 255)
       ];
-      const frontColor = contrast(bgColor, [0, 0, 0]) < 4.5 ? "#fff" : "#000";
+      const frontColor =
+        contrast(bgColor as RGB, [0, 0, 0]) < 4.5 ? "#fff" : "#000";
 
       return {
         email: faker.internet.email(),

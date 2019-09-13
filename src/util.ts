@@ -1,4 +1,4 @@
-type RGB = [number, number, number];
+export type RGB = [number, number, number];
 
 const luminance = (rgb: RGB) => {
   const a = rgb.map(v => {

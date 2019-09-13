@@ -1,0 +1,37 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm-run-all -p dev:watch dev:run",
+    "dev:watch": "parcel watch src/index.ts -d dist --target=node10",
+    "dev:run": "nodemon dist/index.js",
+    "data": "npm-run-all data:build data:run",
+    "data:build": "parcel build src/populateDb.ts -d build/populateDb --target=node10",
+    "data:run": "cross-env node build/populateDb/populateDb.js"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.1",
+    "@types/mongoose": "^5.5.17",
+    "@types/node": "^12.7.4",
+    "@types/socket.io": "^2.1.2",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "lowdb": "^1.0.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.7.0",
+    "shortid": "^2.2.14",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.1",
+    "typescript": "^3.6.2"
+  }
+}

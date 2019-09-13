@@ -15,7 +15,7 @@ import sendMessage from "./socket/sendMessage";
 
 dotenv.config();
 
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 5000;
 
 let dbUrl;
 
@@ -24,8 +24,6 @@ if (process.env.NODE_ENV === "development") {
 } else {
   dbUrl = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}`;
 }
-
-console.log(dbUrl)
 
 try {
   mongoose.connect(dbUrl, {

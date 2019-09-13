@@ -7,7 +7,7 @@
     "dev": "npm-run-all -p dev:watch dev:run",
     "dev:watch": "parcel watch src/index.ts -d dist --target=node10",
     "dev:run": "cross-env NODE_ENV=development nodemon dist/index.js",
-    "prod:build": "parcel build src/index.ts -d build --target=node10",
+    "build": "parcel build src/index.ts -d build --target=node10",
     "data:build": "parcel build src/populateDb.ts -d build/populateDb --target=node10",
     "data:run:dev": "cross-env NODE_ENV=development node build/populateDb/populateDb.js",
     "data:run:prod": "cross-env NODE_ENV=production node build/populateDB/populateDb.js"
